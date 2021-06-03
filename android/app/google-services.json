@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "521607098736",
+    "project_id": "digitalraiz-11af0",
+    "storage_bucket": "digitalraiz-11af0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521607098736:android:c554fe28ffa56ef4321fb5",
+        "android_client_info": {
+          "package_name": "com.example.srividyapeetham"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521607098736-7s227hrmtlsml87evk2mk10gc3vqpcin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnBym6NfTqU0xUx_cpxajKF3DbxcgV3Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521607098736-7s227hrmtlsml87evk2mk10gc3vqpcin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
