@@ -27,9 +27,9 @@ class _LogInScreenState extends State<LogInScreen> {
 
   bool showLoading = false;
 
-  final formKey = new GlobalKey<FormState>();
+  final formKey =  GlobalKey<FormState>();
 
-  final scaffoldKey = new GlobalKey<ScaffoldState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   Text('Or continue as a Guest'),
                   TextButton(
                     style: TextButton.styleFrom(
-                      primary: Colors.redAccent,
+                      primary: Colors.red,
                     ),
                     child: Text('Click Here'),
                     onPressed: () {
