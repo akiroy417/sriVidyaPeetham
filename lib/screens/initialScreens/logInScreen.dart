@@ -76,7 +76,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   keyboardType: TextInputType.phone,
                   controller: _phoneController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.account_circle),
+                    prefixIcon: Icon(Icons.person),
                     // border: OutlineInputBorder(),
                     labelText: 'Mobile NO',
                   ),
@@ -94,7 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
               child: ElevatedButton(
                 style: TextButton.styleFrom(
                   minimumSize: Size(290, 40),
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Color(0XFF821710),
                 ),
                 child: Text('Submit'),
                 onPressed: () async {
@@ -114,6 +114,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         setState(() {
                           showLoading = false;
                         });
+                        // ignore: deprecated_member_use
                         scaffoldKey.currentState!.showSnackBar(
                           SnackBar(
                             content: Text('${verificationFailed.message}'),
@@ -238,11 +239,12 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
         );
       }
-    } on Exception catch (e) {
+    } on Exception {
       setState(() {
         showLoading = false;
       });
 
+      // ignore: deprecated_member_use
       scaffoldKey.currentState!.showSnackBar(
         SnackBar(
           content: Text('e'),

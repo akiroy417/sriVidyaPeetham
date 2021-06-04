@@ -13,8 +13,45 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sri Ubhaya Bharathi Vidya Peetham'),
+      appBar: AppBar(backgroundColor:  Color(0XFF95140E),titleSpacing: -10,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.ac_unit,
+                color: Colors.white,
+                size: 30,
+              ),
+              onPressed: () {},
+            ),
+            Column(
+              children: [
+                Text(
+                  " Shri Manik Prabhu Samsthan",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                Text(
+                  "The Abode Of Supreme Bliss",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0XFF95140E),
+              Color(0XFF95140E),
+            ],
+          )),
+        ),
       ),
       body: _buildBody(context),
     );
@@ -54,6 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -67,6 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -80,6 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -93,6 +139,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -106,6 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -119,6 +171,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -132,6 +187,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -145,6 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -158,6 +219,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -171,6 +235,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -184,6 +251,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.22,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -193,71 +263,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                // Card(
-                //   child: Container(
-                //     height: MediaQuery.of(context).size.height * 0.11,
-                //     width: MediaQuery.of(context).size.width * 0.22,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(Icons.account_circle),
-                //         Text('Text'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   child: Container(
-                //     height: MediaQuery.of(context).size.height * 0.11,
-                //     width: MediaQuery.of(context).size.width * 0.22,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(Icons.account_circle),
-                //         Text('Text'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   child: Container(
-                //     height: MediaQuery.of(context).size.height * 0.11,
-                //     width: MediaQuery.of(context).size.width * 0.22,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(Icons.account_circle),
-                //         Text('Text'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   child: Container(
-                //     height: MediaQuery.of(context).size.height * 0.11,
-                //     width: MediaQuery.of(context).size.width * 0.22,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(Icons.account_circle),
-                //         Text('Text'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   child: Container(
-                //     height: MediaQuery.of(context).size.height * 0.11,
-                //     width: MediaQuery.of(context).size.width * 0.22,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(Icons.account_circle),
-                //         Text('Text'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
