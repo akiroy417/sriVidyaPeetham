@@ -4,6 +4,8 @@ import 'package:srividyapeetham/screens/initialScreens/HomeScreen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'homeScreenOld.dart';
+
 enum MobileVerificationState {
   SHOW_MOBILE_FORM_STATE,
   SHOW_OTP_FORM_STATE,
@@ -150,7 +152,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       Navigator.pushReplacement(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => HomeScreenOld(),
                         ),
                       );
                     },
