@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:srividyapeetham/screens/initialScreens/HomeScreen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:srividyapeetham/screens/initialScreens/homeScreenOld.dart';
 
-import 'homeScreenOld.dart';
-
-enum MobileVerificationState {
-  SHOW_MOBILE_FORM_STATE,
-  SHOW_OTP_FORM_STATE,
-}
+// enum MobileVerificationState {
+//   SHOW_MOBILE_FORM_STATE,
+//   SHOW_OTP_FORM_STATE,
+// }
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -19,8 +18,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  MobileVerificationState currentState =
-      MobileVerificationState.SHOW_MOBILE_FORM_STATE;
+  // MobileVerificationState currentState =
+  //     MobileVerificationState.SHOW_MOBILE_FORM_STATE;
 
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
@@ -37,13 +36,14 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      body: showLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : currentState == MobileVerificationState.SHOW_MOBILE_FORM_STATE
-              ? _getMobileForm(context)
-              : _getOtpForm(context),
+      body: _getMobileForm(context),
+      // body: showLoading
+      //     ? Center(
+      //         child: CircularProgressIndicator(),
+      //       )
+      //     : currentState == MobileVerificationState.SHOW_MOBILE_FORM_STATE
+      //         ? _getMobileForm(context)
+      //         : _getOtpForm(context),
     );
   }
 
@@ -104,35 +104,40 @@ class _LogInScreenState extends State<LogInScreen> {
                     setState(() {
                       showLoading = true;
                     });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => (HomeScreen()),
+                        ));
 
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: _phoneController.text,
-                      verificationCompleted: (phoneAuthCredential) async {
-                        setState(() {
-                          showLoading = false;
-                        });
-                      },
-                      verificationFailed: (verificationFailed) async {
-                        setState(() {
-                          showLoading = false;
-                        });
-                        // ignore: deprecated_member_use
-                        scaffoldKey.currentState!.showSnackBar(
-                          SnackBar(
-                            content: Text('${verificationFailed.message}'),
-                          ),
-                        );
-                      },
-                      codeSent: (verificationId, resendingToken) async {
-                        setState(() {
-                          showLoading = false;
-                          currentState =
-                              MobileVerificationState.SHOW_OTP_FORM_STATE;
-                          this.verificationId = verificationId;
-                        });
-                      },
-                      codeAutoRetrievalTimeout: (verificationId) async {},
-                    );
+                    // await FirebaseAuth.instance.verifyPhoneNumber(
+                    //   phoneNumber: _phoneController.text,
+                    //   verificationCompleted: (phoneAuthCredential) async {
+                    //     setState(() {
+                    //       showLoading = false;
+                    //     });
+                    //   },
+                    //   verificationFailed: (verificationFailed) async {
+                    //     setState(() {
+                    //       showLoading = false;
+                    //     });
+                    //     // ignore: deprecated_member_use
+                    //     scaffoldKey.currentState!.showSnackBar(
+                    //       SnackBar(
+                    //         content: Text('${verificationFailed.message}'),
+                    //       ),
+                    //     );
+                    //   },
+                    //   codeSent: (verificationId, resendingToken) async {
+                    //     setState(() {
+                    //       showLoading = false;
+                    //       currentState =
+                    //           MobileVerificationState.SHOW_OTP_FORM_STATE;
+                    //       this.verificationId = verificationId;
+                    //     });
+                    //   },
+                    //   codeAutoRetrievalTimeout: (verificationId) async {},
+                    // );
                   }
                 },
               ),
@@ -149,12 +154,11 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     child: Text('Click Here'),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => HomeScreenOld(),
-                        ),
-                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => (HomeScreen()),
+                          ));
                     },
                   ),
                 ],
@@ -165,94 +169,94 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
   }
-
-  Widget _getOtpForm(BuildContext context) {
-    return Container(
-      child: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.80,
-                child: TextFormField(
-                  keyboardType: TextInputType.phone,
-                  controller: _otpController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
-                    labelText: 'Enter OTP',
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter valid OTP';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                  minimumSize: Size(290, 40),
-                  backgroundColor: Colors.redAccent,
-                ),
-                child: Text('Verify'),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    PhoneAuthCredential phoneAuthCredential =
-                        PhoneAuthProvider.credential(
-                      verificationId: verificationId,
-                      smsCode: _otpController.text,
-                    );
-
-                    sigInWithPhoneAuthCredential(phoneAuthCredential);
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void sigInWithPhoneAuthCredential(
-      PhoneAuthCredential phoneAuthCredential) async {
-    setState(() {
-      showLoading = true;
-    });
-
-    try {
-      final authCredential =
-          await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
-
-      setState(() {
-        showLoading = false;
-      });
-
-      if (authCredential.user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      }
-    } on Exception {
-      setState(() {
-        showLoading = false;
-      });
-
-      // ignore: deprecated_member_use
-      scaffoldKey.currentState!.showSnackBar(
-        SnackBar(
-          content: Text('e'),
-        ),
-      );
-      // TODO
-    }
-  }
+//
+// Widget _getOtpForm(BuildContext context) {
+//   return Container(
+//     child: Form(
+//       key: formKey,
+//       child: Column(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: Container(
+//               width: MediaQuery.of(context).size.width * 0.80,
+//               child: TextFormField(
+//                 keyboardType: TextInputType.phone,
+//                 controller: _otpController,
+//                 decoration: InputDecoration(
+//                   prefixIcon: Icon(Icons.lock),
+//                   labelText: 'Enter OTP',
+//                 ),
+//                 validator: (value) {
+//                   if (value!.isEmpty) {
+//                     return 'Please enter valid OTP';
+//                   }
+//                   return null;
+//                 },
+//               ),
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: ElevatedButton(
+//               style: TextButton.styleFrom(
+//                 minimumSize: Size(290, 40),
+//                 backgroundColor: Colors.redAccent,
+//               ),
+//               child: Text('Verify'),
+//               onPressed: () {
+//                 if (formKey.currentState!.validate()) {
+//                   PhoneAuthCredential phoneAuthCredential =
+//                       PhoneAuthProvider.credential(
+//                     verificationId: verificationId,
+//                     smsCode: _otpController.text,
+//                   );
+//
+//                   sigInWithPhoneAuthCredential(phoneAuthCredential);
+//                 }
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+//
+// void sigInWithPhoneAuthCredential(
+//     PhoneAuthCredential phoneAuthCredential) async {
+//   setState(() {
+//     showLoading = true;
+//   });
+//
+//   try {
+//     final authCredential =
+//         await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+//
+//     setState(() {
+//       showLoading = false;
+//     });
+//
+//     if (authCredential.user != null) {
+//       Navigator.pushReplacement(
+//         context,
+//         MaterialPageRoute(
+//           builder: (context) => HomeScreen(),
+//         ),
+//       );
+//     }
+//   } on Exception {
+//     setState(() {
+//       showLoading = false;
+//     });
+//
+//     // ignore: deprecated_member_use
+//     scaffoldKey.currentState!.showSnackBar(
+//       SnackBar(
+//         content: Text('e'),
+//       ),
+//     );
+//     // TODO
+//   }
+// }
 }

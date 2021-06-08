@@ -10,17 +10,26 @@ class HomeScreenOld extends StatefulWidget {
 }
 
 class _HomeScreenOldState extends State<HomeScreenOld> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Home'),leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
       ),
-      body: _builBody(context),
+      body: _buildBody(context),
     );
   }
 
-  Widget _builBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return Column(
       children: [
         CarouselSlider(
